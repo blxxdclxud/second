@@ -3,14 +3,14 @@ from random import randrange
 
 from PyQt5.QtWidgets import QApplication, QWidget
 from PyQt5.QtGui import QPainter, QColor
-from PyQt5 import uic
+from UI import Ui_Form
 
 
-class Form(QWidget):
+class Form(Ui_Form, QWidget):
     def __init__(self):
         super().__init__()
 
-        uic.loadUi('UI.ui', self)
+        self.setupUi(self)
 
         self.pushButton.clicked.connect(self.run)
 
@@ -24,7 +24,7 @@ class Form(QWidget):
 
         qp = QPainter()
         qp.begin(self)
-        qp.setPen(QColor('yellow'))
+        qp.setPen(QColor(randrange(256), randrange(256), randrange(256)))
         qp.drawEllipse(x, y, radius, radius)
         qp.end()
 
